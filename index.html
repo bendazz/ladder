@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Ladder Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Japanese Ladder Visualization</h1>
+            <p>Click circles to add/remove rungs, then watch the numbers descend!</p>
+        </header>
+        
+        <div class="controls">
+            <div class="settings-row">
+                <div class="number-selector">
+                    <label class="setting-label">Numbers:</label>
+                    <select id="numberCount">
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="animation-mode">
+                    <label class="setting-label">Mode:</label>
+                    <label class="radio-label">
+                        <input type="radio" name="animationMode" value="sequential" checked> Sequential
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="animationMode" value="simultaneous"> Simultaneous
+                    </label>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="startButton" class="start-btn">Start Animation</button>
+                <button id="runAgainButton" class="run-again-btn" style="display: none;">Run Again</button>
+                <button id="resetButton" class="reset-btn">Reset</button>
+            </div>
+        </div>
+        
+        <div class="ladder-container">
+            <svg id="ladderSvg" width="400" height="600">
+                <!-- Number circles at the top (generated dynamically) -->
+                <g id="numberCircles"></g>
+                
+                <!-- Vertical rails (generated dynamically) -->
+                
+                <!-- Rung toggle points (generated dynamically) -->
+                <g id="rungToggles"></g>
+                
+                <!-- Rungs will be added here dynamically -->
+                <g id="rungs"></g>
+                
+                <!-- Animated numbers will be created here -->
+                <g id="animatedNumbers"></g>
+            </svg>
+        </div>
+        
+        <div class="status">
+            <p id="statusText">Click the circles to add rungs, then press Start!</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
