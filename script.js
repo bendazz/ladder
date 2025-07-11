@@ -158,7 +158,28 @@ class JapaneseLadder {
             toggle.classList.remove('active');
             this.removeRungLine(rail, y);
         } else {
-            // Add rung
+            // Check if there's already a rung at this level (y position)
+            const existingRungAtLevel = Array.from(this.rungs).find(key => {
+                const [, existingY] = key.split(',').map(Number);
+                return existingY === y;
+            });
+            
+            if (existingRungAtLevel) {
+                // Remove the existing rung at this level first
+                const [existingRail, existingY] = existingRungAtLevel.split(',').map(Number);
+                this.rungs.delete(existingRungAtLevel);
+                
+                // Find and deactivate the existing toggle
+                const existingToggle = document.querySelector(`[data-position="${existingRail},${existingY}"]`);
+                if (existingToggle) {
+                    existingToggle.classList.remove('active');
+                }
+                
+                // Remove the existing rung line
+                this.removeRungLine(existingRail, existingY);
+            }
+            
+            // Add the new rung
             this.rungs.add(rungKey);
             toggle.classList.add('active');
             this.addRungLine(rail, y);
